@@ -3,16 +3,32 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { PaymentdetailComponent } from './components/paymentdetail/paymentdetail.component';
+import { PaymentlistComponent } from './components/paymentlist/paymentlist.component';
+import { PaymentcardComponent } from './components/paymentcard/paymentcard.component';
+import { FormsModule } from "@angular/forms";
+import { PaymentService } from './services/payment.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+ 
+import { ToastrModule } from 'ngx-toastr';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PaymentdetailComponent,
+    PaymentlistComponent,
+    PaymentcardComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
   ],
-  providers: [],
+  providers: [PaymentService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
