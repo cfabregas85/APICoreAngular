@@ -1,5 +1,6 @@
 <form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
-    <input type="hidden" name="PMId" [value]="servicePayment.formData.PMId">
+    <input type="hidden" name="CardId" [value]="servicePayment.formData.cardId">
+    <!--CardOwnerName-->
     <div class="form-group">
         <div class="input-group">
             <div class="input-group-append">
@@ -7,9 +8,10 @@
                     <i class="fas fa-user-circle"></i>
                 </div>
             </div>
-            <input type="text" required name="CardOwnerName" #CardOwnerName="ngModel" [(ngModel)]="servicePayment.formData.CardOwnerName" class="form-control" placeholder="Card Owner Name">
+            <input type="text" required name="CardOwnerName" #CardOwnerName="ngModel" [(ngModel)]="servicePayment.formData.cardOwnerName" class="form-control" placeholder="Card Owner Name">
         </div>
     </div>
+    <!--CardNumber-->
     <div class="form-group">
         <div class="input-group">
             <div class="input-group-append">
@@ -17,30 +19,59 @@
                     <i class="fas fa-credit-card"></i>
                 </div>
             </div>
-            <input oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" type="number" maxlength="16" required name="CardNumber" #CardNumber="ngModel" [(ngModel)]="servicePayment.formData.CardNumber" class="form-control"
+            <input oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" type="number" maxlength="16" required name="CardNumber" #CardNumber="ngModel" [(ngModel)]="servicePayment.formData.cardNumber" class="form-control"
                 placeholder="Card Number">
         </div>
     </div>
-    <div class="form-group">
-        <div class="input-group">
-            <div class="input-group-append">
-                <div class="input-group-text bg-white">
-                    <i class="fas fa-calendar-alt"></i>
+
+
+
+    <div class="row">
+        <!--ExpirationMonth-->
+        <div class="col-md-5">
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-append">
+                        <div class="input-group-text bg-white">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                    </div>
+                    <select class="browser-default custom-select" name="ExpirationMonth" #ExpirationMonth="ngModel" [(ngModel)]="servicePayment.formData.expirationMonth" placeholder="MM">
+                        <option *ngFor="let m of MM" [value]="m.value">{{m.name}}</option>                        
+                    </select>
                 </div>
             </div>
-            <input type="text" pattern="([0-9]{2}[/]?){2}" maxlength="5" required name="ExpirationDate" #ExpirationDate="ngModel" [(ngModel)]="servicePayment.formData.ExpirationDate" class="form-control" placeholder="MM/YY">
         </div>
-    </div>
-    <div class="form-group">
-        <div class="input-group">
-            <div class="input-group-append">
-                <div class="input-group-text bg-white">
-                    <i class="fas fa-key"></i>
+        <!--ExpirationYear-->
+        <div class="col-md-5">
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-append">
+                        <div class="input-group-text bg-white">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                    </div>
+                    <select class="browser-default custom-select" required name="ExpirationYear" #ExpirationYear="ngModel" [(ngModel)]="servicePayment.formData.expirationYear" placeholder="YY">
+                            <option *ngFor="let y of YY" [value]="y.value">{{y.name}}</option>                        
+                   </select>
                 </div>
             </div>
-            <input maxlength="3" minlength="3" required type="password" name="CVV" #CVV="ngModel" [(ngModel)]="servicePayment.formData.CVV" class="form-control" placeholder="CVV">
+        </div>
+        <!--CVV-->
+        <div class=" col-md-2">
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-append">
+                        <div class="input-group-text bg-white">
+                            <i class="fas fa-key"></i>
+                        </div>
+                    </div>
+                    <input maxlength="3" minlength="3" required type="password" name="CVV" #CVV="ngModel" [(ngModel)]="servicePayment.formData.cvv" class="form-control" placeholder="CVV">
+                </div>
+            </div>
         </div>
     </div>
+    <!--Button-->
     <div class="form-group">
         <button class="btn btn-success btn-lg btn-block" type="submit" [disabled]="form.invalid">
             <i class="fas fa-database"></i>
@@ -48,3 +79,12 @@
         </button>
     </div>
 </form>
+
+<!-- <div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Dropdown button
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a *ngFor="let m of MM" class="dropdown-item" href="#"> {{m.name}}</a>
+    </div>
+</div> -->

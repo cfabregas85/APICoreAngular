@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PaymentService } from '../../services/payment.service';
 import { PaymentDetail } from '../../models/payment.model';
 import { ToastrService } from 'ngx-toastr';
+import { Card } from '../../models/card.model';
 
 @Component({
   selector: 'app-paymentlist',
@@ -14,23 +15,27 @@ export class PaymentlistComponent implements OnInit {
 
   ngOnInit() {
     this.servicePayment.GetAllPayment();
+    console.log(this.servicePayment.GetAllPayment());
   }
 
-  EditPayment(p:PaymentDetail){
+  EditPayment(p:Card){      
        this.servicePayment.formData= Object.assign({},p);
+       console.log( this.servicePayment.formData);
   }
 
-  DeletePayment(PMId){
-    if (confirm('Are you sure to delete this record ?')) {     
+  DeletePayment(CardId:string){
+    if (confirm('Are you sure to delete this record ?')) {  
+      
+      console.log(CardId);
     
-    this.servicePayment.DeletePaymentDetail(PMId).subscribe(
-      res =>{
+    this.servicePayment.DeletePaymentDetail(CardId).subscribe(
+     res =>{
         this.servicePayment.GetAllPayment(); 
-        this.toastr.warning('Deleted successfully', 'Payment');       
-      },
+        this.toastr.warning('Card # : ' + res + ' has been deleted successfully', 'Card');       
+       },
       err =>{
-        console.log(err);
-      }
+         console.log(err);
+       }
     )
   }
   }

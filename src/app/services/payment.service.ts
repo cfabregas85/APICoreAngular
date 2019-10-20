@@ -1,29 +1,30 @@
 import { Injectable } from '@angular/core';
-import { PaymentDetail } from '../models/payment.model';
 import { HttpClient } from '@angular/common/http';
+import { Card } from '../models/card.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PaymentService {
 
- formData:PaymentDetail;
- listPayment: PaymentDetail[];
- readonly rootUrl='https://localhost:44374/api/PaymentDetails'
+ formData:Card;
+ listCard: Card[];
+ readonly rootUrl='https://localhost:44393/api/card'
 
   constructor(private http:HttpClient) { }
 
   GetAllPayment(){
     return this.http.get(this.rootUrl).toPromise()
-    .then(res => this.listPayment = res as PaymentDetail[]);
+    .then(res => this.listCard = res as Card[]);
   } 
 
   PostPaymentDetail(){
+    console.log(this.formData);
     return  this.http.post(this.rootUrl,this.formData);
   }
 
   PutPaymentDetail(){
-    return  this.http.put(this.rootUrl+'/'+this.formData.PMId,this.formData);
+    return  this.http.put(this.rootUrl+'/'+this.formData.cardId,this.formData);
   }
   
   DeletePaymentDetail(id){
