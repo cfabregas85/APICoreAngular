@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { PaymentdetailComponent } from './components/paymentdetail/paymentdetail.component';
 import { PaymentlistComponent } from './components/paymentlist/paymentlist.component';
 import { PaymentcardComponent } from './components/paymentcard/paymentcard.component';
-import { FormsModule } from "@angular/forms";
+import { FormsModule,ReactiveFormsModule } from "@angular/forms";
 import { PaymentService } from './services/payment.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
  
@@ -26,8 +26,9 @@ import { LoginComponent } from './components/login/login.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
-    BrowserAnimationsModule,
+    BrowserAnimationsModule,    
     ToastrModule.forRoot()
   ],
   providers: [PaymentService],
